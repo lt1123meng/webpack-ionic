@@ -136,7 +136,6 @@ indexApp
                 }
 
                 function initDays() {
-                    debugger;
                     var daysList = [];
                     var daysInMonth = currentMonent.daysInMonth()
                     var dayStartWeek = currentMonent.date(1).day()
