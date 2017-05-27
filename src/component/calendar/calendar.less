@@ -1,0 +1,108 @@
+@import "../../base";
+.calendar-wrapper{
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+  z-index: 100;
+  border-radius: 6PX;
+  overflow: hidden;
+  box-shadow: 0 0 2px 0px rgba(7, 17, 27, 0.5);
+  .header-wrapper{
+    display: flex;
+    display: -webkit-flex;
+    height: 54px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 0;
+    background-color: rgb(244, 244, 244);
+    .date{
+      flex: 1;
+      -webkit-flex: 1;
+      text-align: left;
+      .month{
+        display: inline-block;
+        margin-right: 6px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .year{
+        line-height: 24px;
+        vertical-align: bottom;
+        font-size: 13px;
+        font-weight: bold;
+      }
+    }
+    .change-month{
+      flex: 1;
+      -webkit-flex: 1;
+      text-align: right;
+      line-height: 24px;
+      .icon{
+        width: 16px;
+        vertical-align: middle;
+      }
+      .prev{
+        margin-right: 6px;
+
+      }
+      .next{
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        &.disable{
+          opacity: 0.3;
+        }
+      }
+    }
+  }
+  .content-wrapper{
+    background: #fff;
+    .box{
+      padding: 6px 8px 12px 8px;
+      text-align: center;
+      .title-wrapper{
+        display: flex;
+        display: -webkit-flex;
+        .day-box{
+          flex: 0 0 14.28%;
+          -webkit-flex: 0 0 14.28%;
+          margin-bottom: 6px;
+          .day{
+            margin: 0 auto;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            font-weight: bold;
+            font-size: 13px;
+            color: @orange-color;
+          }
+        }
+      }
+      .day-wrapper{
+        display: flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        .day-box{
+          flex: 0 0 14.28%;
+          -webkit-flex: 0 0 14.28%;
+          .day{
+            margin: 6px auto;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border:0.5px solid @border-color;
+            &.disable-choose{
+              color: #ddd;
+            }
+            &.choosed{
+              border:0.5px solid @common-color;
+              background-color: @common-color;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

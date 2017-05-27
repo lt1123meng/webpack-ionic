@@ -1,0 +1,23 @@
+<div class="func-wrapper">
+    <div class="content-wrapper">
+        <div class="slider-wrapper">
+            <img class="img" src="./images/home/home-slider-1.png">
+        </div>
+        <div class="module-wrapper">
+            <div class="module-box" ng-repeat="module in moduleList">
+                <div ng-if="module.title" class="title-wrapper">
+                    <div class="line-left"></div>
+                    <div class="line-right"></div>
+                    <span ng-bind="module.title"></span>
+                </div>
+                <div class="function-wrapper">
+                    <div class="function" ng-repeat="item in module.list" ng-click="goRoute(item.route)">
+                        <img class="icon" ng-src={{"./images/function/"+item.icon}}>
+                        <div class="text" ng-bind="item.name"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<dir-footer-jz></dir-footer-jz>

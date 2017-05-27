@@ -1,0 +1,73 @@
+<div class="recharge-outer-wrapper">
+    <div class="slider-wrapper">
+        <div class="header-wrapper">
+            <img class="img" src="./images/home/home-slider-1.png" alt="">
+            <div class="back" ng-click="back()">
+                <img class="icon" src="./images/icon/icon-back-white.png">
+            </div>
+        </div>
+        <div class="content-wrapper">
+            <div class="integrate">
+                <span>剩余积分：</span>
+                <span class="number" ng-bind="integradeInfo.integrate"></span>
+            </div>
+            <div class="package-wrapper">
+                <div class="title">
+                    充值套餐：
+                </div>
+                <div ng-class='{"active":packageIndex==0}' class="item" ng-click="choosePackage('0','10')">
+                    <div class="content">
+                        <img class="icon" src="./images/icon/icon-diamond.png">
+                        <span class="text">充50赠10</span>
+                    </div>
+                    <div class="term">
+                        有效期30天
+                    </div>
+                    <span class="tag-bg"></span>
+                    <span class="tag-text">热</span>
+                </div>
+                <div ng-class='{"active":packageIndex==1}' class="item" ng-click="choosePackage('1','20')">
+                    <div class="content">
+                        <img class="icon" src="./images/icon/icon-diamond.png">
+                        <span class="text">充100赠30</span>
+                    </div>
+                    <div class="term">
+                        有效期30天
+                    </div>
+                </div>
+                <div ng-class='{"active":packageIndex==2}' class="item" ng-click="choosePackage('2','30')">
+                    <div class="content">
+                        <img class="icon" src="./images/icon/icon-diamond.png">
+                        <span class="text">充150赠60</span>
+                    </div>
+                    <div class="term">
+                        有效期30天
+                    </div>
+                </div>
+                <div ng-class='{"active":packageIndex==3}' class="item" ng-click="choosePackage('3','40')">
+                    <div class="content">
+                        <img class="icon" src="./images/icon/icon-diamond.png">
+                        <span class="text">充200赠80</span>
+                    </div>
+                    <div class="term">
+                        有效期30天
+                    </div>
+                </div>
+            </div>
+            <div class="protocol-wrapper">
+                <div ng-click="chooseProtocol()" class="protocol" ng-class='{"active":!protocolCheck}'>
+                    <img class="icon" src="./images/icon/tag-check-orange.png">
+                    <span class="text">用户充值协议</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tail-wrapper">
+        <div class="money">
+            总价：<span class="text" ng-bind="packageMoney"></span>元
+        </div>
+        <div class="btn">
+            立即充值
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="calendar-wrapper" ng-show="!!Popup.chooseCalender">
+    <div class="header-wrapper">
+        <div class="date">
+            <span class="month"><span ng-bind="calendarCurrent.month"></span><span
+                    ng-if="!!calendarCurrent.month">月</span></span>
+            <span class="year"><span ng-bind="calendarCurrent.year"></span></span>
+        </div>
+        <div class="change-month">
+            <img class="icon prev" ng-click="prevMonth()" src="../../images/icon/icon-back.png">
+            <img class="icon next" ng-class="{'disable':calendarToday.year == calendarCurrent.year && calendarToday.month == calendarCurrent.month}" ng-click="nextMonth()" src="../../images/icon/icon-back.png">
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="box">
+            <div class="title-wrapper">
+                <div class="day-box" ng-repeat="week in weekList">
+                    <div class="day">
+                        <span ng-bind="week"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="day-wrapper">
+                <div class="day-box" ng-repeat="day in daysList">
+                    <div class="day" ng-click="chooseDay(day.text,day.canChoose,day.choosed)" ng-class="{'disable-choose':!day.canChoose,'choosed':day.choosed}">
+                        <span ng-bind="day.text"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

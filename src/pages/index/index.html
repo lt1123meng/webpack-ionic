@@ -1,0 +1,96 @@
+<dir-search></dir-search>
+<div class="ls-tool-nav-wrapper" ng-if="info.crid&&info.crid=='LS'">
+    <div class="content-wrapper">
+        <div class="slider-wrapper">
+            <img class="img" src="./images/home/home-slider-1.png">
+        </div>
+        <div class="module-wrapper">
+            <div class="module-box" ng-repeat="module in moduleList">
+                <div ng-if="module.title" class="title-wrapper">
+                    <div class="line-left"></div>
+                    <div class="line-right"></div>
+                    <span ng-bind="module.title"></span>
+                </div>
+                <div class="function-wrapper">
+                    <div class="function" ng-repeat="item in module.list" ng-click="goRoute(item.route)">
+                        <img class="icon" ng-src={{"./images/function/"+item.icon}}>
+                        <div class="text" ng-bind="item.name"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jz-tool-nav-wrapper" ng-if="info.crid&&info.crid!='LS'">
+    <div class="change-user" ng-bind="currentStudentDetail.name" ng-click="chooseStu()"></div>
+    <div class="time-wrapper" ng-if="!!calendarSelect">
+        <div class="box">
+            <span ng-bind="calendarSelect.year"></span>
+            <span>-</span>
+            <span ng-bind="calendarSelect.month"></span>
+            <span>-</span>
+            <span ng-bind="calendarSelect.day"></span>
+            <span>&nbsp;&nbsp;</span>
+            <span ng-bind="calendarSelect.week"></span>
+        </div>
+
+    </div>
+    <div class="content-wrapper">
+        <div class="item-wrapper" ng-repeat="item in indexList">
+            <div class="item">
+                <div class="icon-wrapper">
+                    <div class="box inform" ng-if="item.type=='inform'">
+                        通知
+                    </div>
+                    <div class="box vote" ng-if="item.type=='vote'">
+                        投票
+                    </div>
+                </div>
+                <div class="detail-wrapper">
+                    <p class="subject" ng-bind="item.roleName"></p>
+                    <p class="class" ng-bind="item.className"></p>
+                    <p class="detail" ng-bind="item.content"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="change-role-popup-wrapper" ng-show="!!Popup.changeRole">
+    <div class="content-wrapper">
+        <div class="items-wrapper" ng-repeat="role in info.rid">
+            <div class="item" ng-click="chooseRole(role)">
+                <div class="role">
+                    <span ng-if="role=='LS'">老师</span>
+                    <span ng-if="role=='JZ'">家长</span>
+                    <span ng-if="role=='BR'">学生</span>
+                </div>
+                <div class="check" ng-if="role==info.crid">
+                    <img class="icon" src="./images/icon/tag-check-orange.png">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="choose-stu-popup-wrapper" ng-show="!!Popup.chooseStu">
+    <div class="content-wrapper">
+        <div class="items-wrapper" ng-repeat="item in JZvipInfo">
+            <div class="item" ng-click="chooseThisStu($index)">
+                <div class="name-box">
+                    <div class="name">
+                        <span ng-bind="item.name"></span>
+                    </div>
+                    <div class="check" ng-if="$index==currentStudentIndex">
+                        <img class="icon" src="./images/icon/tag-check-orange.png">
+                    </div>
+                </div>
+                <div class="class-box">
+                    <span ng-bind="item.className"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<dir-footer-ls ng-if="info.crid=='LS'"></dir-footer-ls>
+<dir-footer-jz ng-if="info.crid!='LS'"></dir-footer-jz>
+<dir-mast></dir-mast>
+<dir-calendar></dir-calendar>
