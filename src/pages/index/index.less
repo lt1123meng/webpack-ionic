@@ -114,15 +114,25 @@
         bottom: -10px;
         left: -10px;
         right: -10px;
-        background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 30, from(rgba(255, 255, 255, 0)), color-stop(0.2, rgba(255, 255, 255, 0)), color-stop(0.2, #ffffff), to(#ffffff)), -webkit-linear-gradient(90deg, rgba(255, 255, 255, 0) 10px, #ffffff 0%);
+        background-image:
+                -webkit-gradient(
+                        radial, 50% 50%, 0, 50% 50%, 30,
+                        from(rgba(255, 255, 255, 0)),
+                        color-stop(0.2, rgba(255, 255, 255, 0)),
+                        color-stop(0.2, #ffffff), to(#ffffff)),
+                -webkit-linear-gradient(
+                        90deg, rgba(255, 255, 255, 0) 10px, #ffffff 0%
+                );
         background-size: 20px 20px, 100%;
         background-position: -10px -10px, center center;
         background-repeat: repeat;
+        border-radius: 5px;
       }
       .item {
         position: relative;
         display: flex;
         display: -webkit-flex;
+        height: 82px;
         z-index: 1;
         .icon-wrapper {
           flex: 0 0 86px;

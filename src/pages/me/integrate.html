@@ -1,0 +1,54 @@
+<div class="integrate-outer-wrapper">
+    <div class="header-wrapper">
+        <div class="box">
+            <div class="inner-box">
+                <div class="text">
+                    <span ng-bind="integradeInfo.integrate"></span>
+                </div>
+                <div class="name">我的积分</div>
+            </div>
+            <div class="inner-box" ng-click="goRecharge()">
+                <div class="text">
+                    <span class="recharge">充</span>
+                </div>
+                <div class="name">立即充值</div>
+            </div>
+        </div>
+    </div>
+    <div class="integrate-wrapper">
+        <div class="box">
+            <div ng-bind="integradeInfo.integrate"></div>
+            <div>积分</div>
+        </div>
+    </div>
+    <div class="record-wrapper">
+        <div class="dead-time">
+            <div class="text">
+                <span>截止</span>
+                <span ng-bind="date|date:'yyyy-MM-dd HH:mm'"></span>
+            </div>
+        </div>
+        <div class="record-list">
+            <div class="box" ng-repeat="item in recordList">
+                <div class="name">
+                    <span ng-bind="item.remark"></span>
+                </div>
+                <div class="point">
+                    <div class="text">
+                        <span class="positive" ng-if="item.point>=0" ng-bind="'+'+item.point"></span>
+                        <span class="negative" ng-if="item.point<0" ng-bind="item.point"></span>
+                    </div>
+                    <div class="time">
+                        <span ng-bind="item.create_time|date:'yyyy-MM-dd HH:mm:ss'"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="loading-more">
+                <span ng-if="more" class="more" ng-click="loadMore()">点击加载更多数据</span>
+                <span ng-if="!more" class="none">没有更多数据了</span>
+            </div>
+        </div>
+    </div>
+</div>
+<dir-footer-ls ng-if="info.crid=='LS'"></dir-footer-ls>
+<dir-footer-jz ng-if="info.crid!='LS'"></dir-footer-jz>

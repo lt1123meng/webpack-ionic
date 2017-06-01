@@ -13,7 +13,7 @@
                     </p>
                 </div>
                 <div class="qrcode-box">
-                    <div class="box">
+                    <div class="box" ng-click="goRegular()">
                         <p class="regular">会员规则</p>
                         <img class="img"
                              src="http://qr.api.cli.im/qr?data=http%253A%252F%252Fdealer0.autoimg.cn%252Fnews%252F201503%252F8590%252F620x465_1_q87_20150319102402223.jpg&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=c4143eec0c1cb78edd8541e74c6fd29d"
@@ -25,12 +25,12 @@
         <div class="integrate-wrapper">
             <div class="integrate-box">
                 <div class="recharge-box">
-                    <p class="text"><span class="allIntegrate"><span ng-bind="integradeInfo.integrate"></span></span>积分</p>
+                    <p class="text" ng-click="goIntegrate()"><span class="allIntegrate"><span ng-bind="integradeInfo.integrate"></span></span>积分</p>
                     <div class="recharge btn" ng-click="goRecharge()">
                         充值
                     </div>
                 </div>
-                <div class="order-box">
+                <div class="order-box" ng-click="goOrder()">
                     <p class="text">0</p>
                     <p class="all-order-btn">全部订单</p>
                 </div>

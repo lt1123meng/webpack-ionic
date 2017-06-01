@@ -1,0 +1,41 @@
+<div class="regular-outer-wrapper">
+    <div class="header-wrapper">
+        <div class="header-box">
+            <div class="title-wrapper">
+                <span class="text">会员升级规则</span>
+            </div>
+            <div class="box">
+                <div class="slider-container">
+                    <div class="slider-wrapper">
+                        <img class="icon" src="./images/icon/icon-diamond.png" width="100px">
+                        <div class="level-wrapper">
+                            <span class="level"><span>V</span><span ng-bind="integradeInfo.level"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="module-box" ng-repeat="privilege in privilegeList">
+            <div ng-if="privilege.title" class="title-wrapper">
+                <div class="line-left"></div>
+                <div class="line-right"></div>
+                <span ng-bind="privilege.title"></span>
+            </div>
+            <div class="function-wrapper">
+                <div class="function" ng-repeat="item in privilege.list" ng-click="goRoute(item.route)">
+                    <div class="content">
+                        <div class="icon" ng-style="item.color">
+                            <span ng-bind="item.icon"></span>
+                        </div>
+                        <div class="text" ng-bind="item.name"></div>
+                    </div>
+                    <div ng-if="showBorder($index,privilege.list.length)" class="liner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<dir-footer-ls ng-if="info.crid=='LS'"></dir-footer-ls>
+<dir-footer-jz ng-if="info.crid!='LS'"></dir-footer-jz>

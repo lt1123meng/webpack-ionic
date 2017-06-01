@@ -61,7 +61,7 @@ indexApp.controller('homeCtrl', function ($scope, $http, $state, $rootScope, $in
         $scope.currentStudentDetail = $rootScope.JZvipInfo[$scope.currentStudentIndex]
     })
     function initJZData() {
-        $server.getJZAllList.then(function (data) {
+        $server.getJZAllList().then(function (data) {
             if (data.status != 200) {
                 return
             }

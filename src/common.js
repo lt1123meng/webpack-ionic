@@ -80,7 +80,7 @@ indexApp
                     initCalendar()
                 }
                 scope.nextMonth = function () {
-                    if (scope.calendarSelect.year == moment().year() && scope.calendarSelect.month == moment().month() + 1) {
+                    if (scope.calendarCurrent.year == moment().year() && scope.calendarCurrent.month == moment().month() + 1) {
                         return
                     }
                     if (scope.calendarCurrent.month == 12) {
@@ -176,11 +176,24 @@ indexApp
     })
     .factory('$server', function ($http) {
         return {
-            getUserInfo: $http.get(INIT.BASE_URI + '/user/get/' + sessionStorage.oid),
-            getRole: $http.get(INIT.BASE_URI + 'user/role/' + sessionStorage.oid),
-            getIntegrate: $http.get(INIT.BASE_URI + '/integral/getIngegralSum/' + sessionStorage.oid),
-            getVipInfo: $http.get(INIT.BASE_VIP + 'users/' + sessionStorage.oid + '/' + sessionStorage.crid),
-            getJZAllList: $http.get('../../json/jz-index.json')
+            getUserInfo: function () {
+                return $http.get(INIT.BASE_URI + '/user/get/' + sessionStorage.oid)
+            },
+            getRole: function () {
+                return $http.get(INIT.BASE_URI + 'user/role/' + sessionStorage.oid)
+            },
+            getIntegrate: function () {
+                return $http.get(INIT.BASE_URI + '/integral/getIngegralSum/' + sessionStorage.oid)
+            },
+            getIntegrateRecord: function (page) {
+                return $http.get(INIT.BASE_URI + '/integral/getIngegral/' + sessionStorage.oid + '/' + page)
+            },
+            getVipInfo: function () {
+                return $http.get(INIT.BASE_VIP + 'users/' + sessionStorage.oid + '/' + sessionStorage.crid)
+            },
+            getJZAllList: function () {
+                return $http.get('../../json/jz-index.json')
+            }
         }
     })
     .factory('$initData', function () {
@@ -372,7 +385,7 @@ indexApp
                                 icon: ''
                             }
                         ]
-                    },{
+                    }, {
                         title: '',
                         list: [
                             {
@@ -381,7 +394,7 @@ indexApp
                                 icon: ''
                             }
                         ]
-                    },{
+                    }, {
                         title: '',
                         list: [
                             {
@@ -411,7 +424,7 @@ indexApp
                                 icon: ''
                             }
                         ]
-                    },{
+                    }, {
                         title: '',
                         list: [
                             {
@@ -420,13 +433,81 @@ indexApp
                                 icon: ''
                             }
                         ]
-                    },{
+                    }, {
                         title: '',
                         list: [
                             {
                                 name: '意见反馈',
                                 route: '',
                                 icon: ''
+                            }
+                        ]
+                    }
+                ]
+            },
+            privilegeList: {
+                LS: [
+                    {
+                        title: '会员特权',
+                        list: [
+                            {
+                                name: '上传成绩',
+                                color: {backgroundColor: 'rgb(244,144,112)'},
+                                route: '',
+                                icon: '+30'
+                            }, {
+                                name: '充值返现',
+                                color: {backgroundColor: 'rgb(120,175,255)'},
+                                route: '',
+                                icon: '5%'
+                            }, {
+                                name: '学情分析',
+                                color: {backgroundColor: 'rgb(125,221,85)'},
+                                route: '',
+                                icon: '+1'
+                            }, {
+                                name: '试题',
+                                color: {backgroundColor: 'rgb(255,205,94)'},
+                                route: '',
+                                icon: '+3000'
+                            }, {
+                                name: '随即优惠',
+                                color: {backgroundColor: 'rgb(143,149,243)'},
+                                route: '',
+                                icon: '生日'
+                            }
+                        ]
+                    }
+                ],
+                JZ: [
+                    {
+                        title: '会员特权',
+                        list: [
+                            {
+                                name: '上传成绩',
+                                color: {backgroundColor: 'rgb(244,144,112)'},
+                                route: '',
+                                icon: '+30'
+                            }, {
+                                name: '充值返现',
+                                color: {backgroundColor: 'rgb(120,175,255)'},
+                                route: '',
+                                icon: '5%'
+                            }, {
+                                name: '学情分析',
+                                color: {backgroundColor: 'rgb(125,221,85)'},
+                                route: '',
+                                icon: '+1'
+                            }, {
+                                name: '试题',
+                                color: {backgroundColor: 'rgb(255,205,94)'},
+                                route: '',
+                                icon: '+3000'
+                            }, {
+                                name: '随即优惠',
+                                color: {backgroundColor: 'rgb(143,149,243)'},
+                                route: '',
+                                icon: '生日'
                             }
                         ]
                     }
@@ -439,7 +520,7 @@ indexApp
         return {
             init: function (callback) {
                 $rootScope.info = {}
-                $server.getUserInfo.then(function (data) {
+                $server.getUserInfo().then(function (data) {
                     if (data.status != 200) {
                         return
                     }
@@ -459,7 +540,7 @@ indexApp
                 }).catch(function (data) {
                 })
                 function initRole() {
-                    $server.getRole.then(function (data) {
+                    $server.getRole().then(function (data) {
                         if (data.status != 200) {
                             return
                         }
@@ -480,7 +561,7 @@ indexApp
                                 $rootScope.info.rid.push('LS')
                             }
                         }
-                        if (sessionStorage.crid) {
+                        if (sessionStorage.crid != 'undefined') {
                             $rootScope.info.crid = sessionStorage.crid
                         } else {
                             sessionStorage.crid = $rootScope.info.crid
@@ -497,7 +578,7 @@ indexApp
     .factory('$initIntegrate', function ($rootScope, $http, $server) {
         return {
             init: function (callback) {
-                $server.getIntegrate.then(function (data) {
+                $server.getIntegrate().then(function (data) {
                     if (data.status != 200) {
                         return
                     }
@@ -513,7 +594,7 @@ indexApp
     .factory('$initVIPInfo', function ($rootScope, $http, $server) {
         return {
             init: function () {
-                $server.getVipInfo.then(function (data) {
+                $server.getVipInfo().then(function (data) {
                     if (data.status != 200) {
                         return
                     }
